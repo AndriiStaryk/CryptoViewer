@@ -15,6 +15,10 @@
 		4EDE47632C7E29FD00801B43 /* CVTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47622C7E29FD00801B43 /* CVTabBarController.swift */; };
 		4EDE476A2C7E494300801B43 /* CVTrendingCryptosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47692C7E494300801B43 /* CVTrendingCryptosViewController.swift */; };
 		4EDE476C2C7E497200801B43 /* CVFavoriteCryptosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE476B2C7E497200801B43 /* CVFavoriteCryptosViewController.swift */; };
+		4EDE47702C7E770100801B43 /* CVCryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE476F2C7E770100801B43 /* CVCryptoCell.swift */; };
+		4EDE47732C7E7C3D00801B43 /* CVCryptoLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47722C7E7C3D00801B43 /* CVCryptoLogo.swift */; };
+		4EDE47762C7E7FC800801B43 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47752C7E7FC800801B43 /* Crypto.swift */; };
+		4EDE47782C7FC51600801B43 /* CVCellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47772C7FC51600801B43 /* CVCellLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		4EDE47622C7E29FD00801B43 /* CVTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVTabBarController.swift; sourceTree = "<group>"; };
 		4EDE47692C7E494300801B43 /* CVTrendingCryptosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVTrendingCryptosViewController.swift; sourceTree = "<group>"; };
 		4EDE476B2C7E497200801B43 /* CVFavoriteCryptosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVFavoriteCryptosViewController.swift; sourceTree = "<group>"; };
+		4EDE476F2C7E770100801B43 /* CVCryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCryptoCell.swift; sourceTree = "<group>"; };
+		4EDE47722C7E7C3D00801B43 /* CVCryptoLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCryptoLogo.swift; sourceTree = "<group>"; };
+		4EDE47752C7E7FC800801B43 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		4EDE47772C7FC51600801B43 /* CVCellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCellLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,7 @@
 		4EDE474D2C7E27F700801B43 /* CryptoViewer */ = {
 			isa = PBXGroup;
 			children = (
+				4EDE47742C7E7FB900801B43 /* Models */,
 				4EDE47682C7E485900801B43 /* Screens */,
 				4EDE47642C7E481800801B43 /* CustomViews */,
 				4EDE474E2C7E27F700801B43 /* AppDelegate.swift */,
@@ -76,6 +85,8 @@
 		4EDE47642C7E481800801B43 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				4EDE47712C7E7C0C00801B43 /* ImageViews */,
+				4EDE476E2C7E76B100801B43 /* Cells */,
 				4EDE47672C7E483200801B43 /* Labels */,
 				4EDE47662C7E482C00801B43 /* Buttons */,
 				4EDE47652C7E482300801B43 /* TabBars */,
@@ -100,6 +111,7 @@
 		4EDE47672C7E483200801B43 /* Labels */ = {
 			isa = PBXGroup;
 			children = (
+				4EDE47772C7FC51600801B43 /* CVCellLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -111,6 +123,30 @@
 				4EDE476B2C7E497200801B43 /* CVFavoriteCryptosViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		4EDE476E2C7E76B100801B43 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4EDE476F2C7E770100801B43 /* CVCryptoCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4EDE47712C7E7C0C00801B43 /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				4EDE47722C7E7C3D00801B43 /* CVCryptoLogo.swift */,
+			);
+			path = ImageViews;
+			sourceTree = "<group>";
+		};
+		4EDE47742C7E7FB900801B43 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4EDE47752C7E7FC800801B43 /* Crypto.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,10 +219,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EDE47732C7E7C3D00801B43 /* CVCryptoLogo.swift in Sources */,
 				4EDE47632C7E29FD00801B43 /* CVTabBarController.swift in Sources */,
 				4EDE47532C7E27F700801B43 /* ViewController.swift in Sources */,
+				4EDE47782C7FC51600801B43 /* CVCellLabel.swift in Sources */,
+				4EDE47762C7E7FC800801B43 /* Crypto.swift in Sources */,
 				4EDE474F2C7E27F700801B43 /* AppDelegate.swift in Sources */,
 				4EDE47512C7E27F700801B43 /* SceneDelegate.swift in Sources */,
+				4EDE47702C7E770100801B43 /* CVCryptoCell.swift in Sources */,
 				4EDE476C2C7E497200801B43 /* CVFavoriteCryptosViewController.swift in Sources */,
 				4EDE476A2C7E494300801B43 /* CVTrendingCryptosViewController.swift in Sources */,
 			);

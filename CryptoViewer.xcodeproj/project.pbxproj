@@ -19,6 +19,7 @@
 		4EDE47732C7E7C3D00801B43 /* CVCryptoLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47722C7E7C3D00801B43 /* CVCryptoLogo.swift */; };
 		4EDE47762C7E7FC800801B43 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47752C7E7FC800801B43 /* Crypto.swift */; };
 		4EDE47782C7FC51600801B43 /* CVCellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47772C7FC51600801B43 /* CVCellLabel.swift */; };
+		4EDE477A2C7FC86C00801B43 /* CVCryptoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47792C7FC86C00801B43 /* CVCryptoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4EDE47722C7E7C3D00801B43 /* CVCryptoLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCryptoLogo.swift; sourceTree = "<group>"; };
 		4EDE47752C7E7FC800801B43 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		4EDE47772C7FC51600801B43 /* CVCellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCellLabel.swift; sourceTree = "<group>"; };
+		4EDE47792C7FC86C00801B43 /* CVCryptoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCryptoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			children = (
 				4EDE47692C7E494300801B43 /* CVTrendingCryptosViewController.swift */,
 				4EDE476B2C7E497200801B43 /* CVFavoriteCryptosViewController.swift */,
+				4EDE47792C7FC86C00801B43 /* CVCryptoViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				4EDE474F2C7E27F700801B43 /* AppDelegate.swift in Sources */,
 				4EDE47512C7E27F700801B43 /* SceneDelegate.swift in Sources */,
 				4EDE47702C7E770100801B43 /* CVCryptoCell.swift in Sources */,
+				4EDE477A2C7FC86C00801B43 /* CVCryptoViewController.swift in Sources */,
 				4EDE476C2C7E497200801B43 /* CVFavoriteCryptosViewController.swift in Sources */,
 				4EDE476A2C7E494300801B43 /* CVTrendingCryptosViewController.swift in Sources */,
 			);

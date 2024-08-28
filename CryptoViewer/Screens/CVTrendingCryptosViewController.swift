@@ -39,7 +39,7 @@ class CVTrendingCryptosViewController: UIViewController {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.rowHeight = 80
-//        tableView.delegate = self
+        tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(CVCryptoCell.self, forCellReuseIdentifier: CVCryptoCell.reuseID)
@@ -73,5 +73,11 @@ extension CVTrendingCryptosViewController: UITableViewDataSource, UITableViewDel
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCrypto = trending[indexPath.row]
+        let destinationVC = CVCryptoViewController(crypto: selectedCrypto)
+        
+        navigationController?.pushViewController(destinationVC, animated: true)
+    }
     
 }

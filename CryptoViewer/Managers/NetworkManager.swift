@@ -15,7 +15,7 @@ final class NetworkManager {
     
     private init() { }
     
-    func getTrendingCryptos(completed: @escaping (Result<[Crypto], CVError>) -> Void) {
+    func getTrendingCryptos(page: Int, completed: @escaping (Result<[Crypto], CVError>) -> Void) {
         
         let endPoint = baseURLString + "coins/markets"
         
@@ -29,7 +29,7 @@ final class NetworkManager {
             URLQueryItem(name: "vs_currency", value: "usd"),
             URLQueryItem(name: "order", value: "market_cap_desc"),
             URLQueryItem(name: "per_page", value: "250"),
-            URLQueryItem(name: "page", value: "1"),
+            URLQueryItem(name: "page", value: "\(page)"),
         ]
         components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
         

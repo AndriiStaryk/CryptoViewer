@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CVTrendingCryptosViewController: UIViewController {
+class CVTrendingCryptosViewController: CVLoadingDataViewController {
 
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
@@ -15,6 +15,9 @@ class CVTrendingCryptosViewController: UIViewController {
     
     var trending: [Crypto] = []
     var filteredTrending: [Crypto] = []
+    var page = 1
+    var isLoadingMoreCryptos = false
+    var hasMoreCryptos = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,7 @@ class CVTrendingCryptosViewController: UIViewController {
         super.viewWillAppear(animated)
         
         resetTable()
-        getTrending()
+        getTrending(page: page)
     }
     
 
@@ -71,13 +74,22 @@ class CVTrendingCryptosViewController: UIViewController {
     
     
     
-    private func getTrending() {
+    private func getTrending(page: Int) {
         
-        NetworkManager.shared.getTrendingCryptos { result in
+        self.showLoadingView()
+        isLoadingMoreCryptos = true
+        
+        NetworkManager.shared.getTrendingCryptos(page: page) { [weak self] result in
+            
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
             switch result {
             case .success(let cryptos):
-                self.trending = cryptos
-                self.filteredTrending = cryptos
+                
+                if cryptos.count < 250 { self.hasMoreCryptos = false }
+                self.trending.append(contentsOf: cryptos)
+                self.filteredTrending = self.trending
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -87,6 +99,8 @@ class CVTrendingCryptosViewController: UIViewController {
             case .failure(let error):
                 print(error.rawValue)
             }
+            
+            self.isLoadingMoreCryptos = false
         }
     
     }
@@ -127,6 +141,19 @@ extension CVTrendingCryptosViewController: UITableViewDataSource, UITableViewDel
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            guard hasMoreCryptos, !isLoadingMoreCryptos else { return }
+            page += 1
+            getTrending(page: page)
+        }
+    }
+    
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        let offsetY = scrollView.contentOffset.y
 //        
@@ -154,6 +181,7 @@ extension CVTrendingCryptosViewController: UISearchResultsUpdating {
         
         tableView.reloadData()
     }
-    
-    
+
 }
+
+

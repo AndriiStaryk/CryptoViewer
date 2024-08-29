@@ -11,6 +11,7 @@ class CVTrendingCryptosViewController: UIViewController {
 
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
+    let searchButton = UIBarButtonItem(systemItem: .search)
     
     var trending: [Crypto] = []
     var filteredTrending: [Crypto] = []
@@ -21,6 +22,7 @@ class CVTrendingCryptosViewController: UIViewController {
         configureViewController()
         configureTableView()
         configureSearchController()
+        configureSearchButton()
     }
     
     
@@ -60,6 +62,14 @@ class CVTrendingCryptosViewController: UIViewController {
         definesPresentationContext = true
     }
     
+    private func configureSearchButton() {
+        searchButton.target = self
+        searchButton.action = #selector(didTapSearchButton)
+        navigationItem.rightBarButtonItem = searchButton
+        searchButton.isHidden = false
+    }
+    
+    
     
     private func getTrending() {
         
@@ -88,9 +98,13 @@ class CVTrendingCryptosViewController: UIViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-        
-        
     }
+    
+    
+    @objc func didTapSearchButton() {
+        navigationItem.searchController?.isActive = true
+    }
+    
 }
 
 
@@ -112,6 +126,16 @@ extension CVTrendingCryptosViewController: UITableViewDataSource, UITableViewDel
         
         navigationController?.pushViewController(destinationVC, animated: true)
     }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        
+////        if offsetY > 10 {
+//            searchButton.isHidden = false
+////        } else {
+////            searchButton.isHidden = true
+////        }
+//    }
     
 }
 

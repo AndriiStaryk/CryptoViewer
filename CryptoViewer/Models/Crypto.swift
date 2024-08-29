@@ -13,7 +13,10 @@ struct Crypto: Decodable {
     let name: String
     let image: String
     let currentPrice: Double
-    
+    //let high24h: Double
+    //let low24h: Double
+    //let lastUpdated: Date
+
 }
 
 

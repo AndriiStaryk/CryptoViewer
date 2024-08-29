@@ -28,7 +28,8 @@ final class NetworkManager {
         let queryItems: [URLQueryItem] = [
             URLQueryItem(name: "vs_currency", value: "usd"),
             URLQueryItem(name: "order", value: "market_cap_desc"),
-            URLQueryItem(name: "per_page", value: "40"),
+            URLQueryItem(name: "per_page", value: "250"),
+            URLQueryItem(name: "page", value: "1"),
         ]
         components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
         

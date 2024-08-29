@@ -10,37 +10,38 @@ import UIKit
 class CVTrendingCryptosViewController: UIViewController {
 
     let tableView = UITableView()
+    let searchController = UISearchController(searchResultsController: nil)
+    
     var trending: [Crypto] = []
+    var filteredTrending: [Crypto] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViewController()
         configureTableView()
+        configureSearchController()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
-        
+        resetTable()
         getTrending()
     }
     
 
     
     
-    func configureViewController() {
+    private func configureViewController() {
         view.backgroundColor = .systemBackground
         title = "Trending"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
-    func configureTableView() {
+    private func configureTableView() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.rowHeight = 80
@@ -51,12 +52,22 @@ class CVTrendingCryptosViewController: UIViewController {
     }
     
     
+    private func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Cryptos"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    
     private func getTrending() {
         
         NetworkManager.shared.getTrendingCryptos { result in
             switch result {
             case .success(let cryptos):
                 self.trending = cryptos
+                self.filteredTrending = cryptos
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -69,26 +80,55 @@ class CVTrendingCryptosViewController: UIViewController {
         }
     
     }
+    
+    private func resetTable() {
+        searchController.searchBar.text = ""
+        searchController.isActive = false
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+        
+    }
 }
 
 
 extension CVTrendingCryptosViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return trending.count
+        return filteredTrending.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CVCryptoCell.reuseID) as! CVCryptoCell
-        let crypto = trending[indexPath.row]
+        let crypto = filteredTrending[indexPath.row]
         cell.set(crypto: crypto)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCrypto = trending[indexPath.row]
+        let selectedCrypto = filteredTrending[indexPath.row]
         let destinationVC = CVCryptoViewController(crypto: selectedCrypto)
         
         navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
+}
+
+extension CVTrendingCryptosViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
+            filteredTrending = trending
+            tableView.reloadData()
+            return
+        }
+        
+        filteredTrending = trending.filter { crypto in
+            return crypto.name.lowercased().contains(searchText.lowercased()) ||
+            crypto.symbol.lowercased().contains(searchText.lowercased())
+        }
+        
+        tableView.reloadData()
     }
     
     

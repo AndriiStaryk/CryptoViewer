@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E6D3D3F2C80922B00A1037C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D3E2C80922B00A1037C /* NetworkManager.swift */; };
+		4E6D3D412C809F4D00A1037C /* CVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D402C809F4D00A1037C /* CVError.swift */; };
 		4EDE474F2C7E27F700801B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE474E2C7E27F700801B43 /* AppDelegate.swift */; };
 		4EDE47512C7E27F700801B43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47502C7E27F700801B43 /* SceneDelegate.swift */; };
 		4EDE47532C7E27F700801B43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47522C7E27F700801B43 /* ViewController.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E6D3D3E2C80922B00A1037C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4E6D3D402C809F4D00A1037C /* CVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVError.swift; sourceTree = "<group>"; };
 		4EDE474B2C7E27F700801B43 /* CryptoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDE474E2C7E27F700801B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EDE47502C7E27F700801B43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E6D3D3D2C8091CB00A1037C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4E6D3D3E2C80922B00A1037C /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		4EDE47422C7E27F700801B43 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +82,7 @@
 		4EDE474D2C7E27F700801B43 /* CryptoViewer */ = {
 			isa = PBXGroup;
 			children = (
+				4E6D3D3D2C8091CB00A1037C /* Managers */,
 				4EDE47742C7E7FB900801B43 /* Models */,
 				4EDE47682C7E485900801B43 /* Screens */,
 				4EDE47642C7E481800801B43 /* CustomViews */,
@@ -80,6 +93,7 @@
 				4EDE47572C7E27F800801B43 /* Assets.xcassets */,
 				4EDE47592C7E27F800801B43 /* LaunchScreen.storyboard */,
 				4EDE475C2C7E27F800801B43 /* Info.plist */,
+				4E6D3D402C809F4D00A1037C /* CVError.swift */,
 			);
 			path = CryptoViewer;
 			sourceTree = "<group>";
@@ -222,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E6D3D3F2C80922B00A1037C /* NetworkManager.swift in Sources */,
 				4EDE47732C7E7C3D00801B43 /* CVCryptoLogo.swift in Sources */,
 				4EDE47632C7E29FD00801B43 /* CVTabBarController.swift in Sources */,
 				4EDE47532C7E27F700801B43 /* ViewController.swift in Sources */,
@@ -233,6 +248,7 @@
 				4EDE477A2C7FC86C00801B43 /* CVCryptoViewController.swift in Sources */,
 				4EDE476C2C7E497200801B43 /* CVFavoriteCryptosViewController.swift in Sources */,
 				4EDE476A2C7E494300801B43 /* CVTrendingCryptosViewController.swift in Sources */,
+				4E6D3D412C809F4D00A1037C /* CVError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

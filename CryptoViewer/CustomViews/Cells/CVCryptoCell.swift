@@ -41,12 +41,18 @@ class CVCryptoCell: UITableViewCell {
             
             cryptoNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             cryptoNameLabel.leadingAnchor.constraint(equalTo: logo.trailingAnchor, constant: padding),
+            cryptoNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -3*padding),
     
         ])
     }
     
     func set(crypto: Crypto) {
         cryptoNameLabel.text = crypto.name
+        
+        NetworkManager.shared.downloadImage(from: crypto.image) { [weak self] image in
+            guard let self = self else { return }
+            DispatchQueue.main.async { self.logo.image = image }
+        }
     }
 }
 

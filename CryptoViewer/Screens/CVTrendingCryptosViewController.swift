@@ -14,7 +14,7 @@ class CVTrendingCryptosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureViewController()
         configureTableView()
     }
@@ -22,6 +22,11 @@ class CVTrendingCryptosViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
         getTrending()
     }
     
@@ -47,16 +52,22 @@ class CVTrendingCryptosViewController: UIViewController {
     
     
     private func getTrending() {
-        trending = [
-            Crypto(name: "BTC"),
-            Crypto(name: "ETH"),
-            Crypto(name: "TON"),
-            Crypto(name: "NOT"),
-        ]
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//            self.view.bringSubviewToFront(self.tableView)
-//        }
+        
+        NetworkManager.shared.getTrendingCryptos { result in
+            switch result {
+            case .success(let cryptos):
+                self.trending = cryptos
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.view.bringSubviewToFront(self.tableView)
+                }
+                
+            case .failure(let error):
+                print(error.rawValue)
+            }
+        }
+    
     }
 }
 
@@ -79,5 +90,6 @@ extension CVTrendingCryptosViewController: UITableViewDataSource, UITableViewDel
         
         navigationController?.pushViewController(destinationVC, animated: true)
     }
+    
     
 }

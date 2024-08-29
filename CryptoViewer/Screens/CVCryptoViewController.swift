@@ -11,7 +11,6 @@ class CVCryptoViewController: UIViewController {
 
     var crypto: Crypto!
     
-    
     init(crypto: Crypto) {
         super.init(nibName: nil, bundle: nil)
         self.crypto = crypto
@@ -33,5 +32,12 @@ class CVCryptoViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
    
+}
 
+#Preview {
+    CVCryptoViewController(crypto:
+                            Crypto(symbol: "ccrpt",
+                                   name: "StarCoin",
+                                   image: "",
+                                   currentPrice: 953))
 }

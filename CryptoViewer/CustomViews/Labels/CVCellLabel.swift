@@ -34,3 +34,8 @@ class CVCellLabel: UILabel {
     
 
 }
+
+
+#Preview {
+    CVTrendingCryptosViewController()
+}

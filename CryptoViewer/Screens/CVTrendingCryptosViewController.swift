@@ -36,8 +36,6 @@ class CVTrendingCryptosViewController: CVLoadingDataViewController {
         getTrending(page: page)
     }
     
-
-    
     
     private func configureViewController() {
         view.backgroundColor = .systemBackground
@@ -137,7 +135,7 @@ extension CVTrendingCryptosViewController: UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCrypto = filteredTrending[indexPath.row]
         let destinationVC = CVCryptoViewController(crypto: selectedCrypto)
-        
+       
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     
@@ -174,6 +172,7 @@ extension CVTrendingCryptosViewController: UISearchResultsUpdating {
             return
         }
         
+        filteredTrending.removeAll()
         filteredTrending = trending.filter { crypto in
             return crypto.name.lowercased().contains(searchText.lowercased()) ||
             crypto.symbol.lowercased().contains(searchText.lowercased())

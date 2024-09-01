@@ -31,6 +31,7 @@ final class NetworkManager {
             URLQueryItem(name: "per_page", value: "250"),
             URLQueryItem(name: "page", value: "\(page)"),
         ]
+        
         components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
         
         var request = URLRequest(url: components.url!)
@@ -57,7 +58,7 @@ final class NetworkManager {
                 return
             }
             
-            //            print(String(decoding: data, as: UTF8.self))
+                  //  print(String(decoding: data, as: UTF8.self))
             
             do {
                 let decoder = JSONDecoder()
@@ -107,22 +108,67 @@ final class NetworkManager {
         task.resume()
     }
     
+    func getChartData(for id: String, days: Int, daily: Bool ,completed: @escaping (Result<ChartPriceData, CVError>) -> Void) {
+        let endPoint = baseURLString + "coins/\(id)/market_chart"
+        
+        guard let url = URL(string: endPoint) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        var queryItems: [URLQueryItem] = [
+          URLQueryItem(name: "vs_currency", value: "usd"),
+          URLQueryItem(name: "days", value: "\(days)"),
+        ]
+        
+        if daily {
+            queryItems.append(URLQueryItem(name: "interval", value: "daily"))
+        }
+        
+        components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
+
+        var request = URLRequest(url: components.url!)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 10
+        request.allHTTPHeaderFields = [
+            "accept": "application/json",
+            "x-cg-demo-api-key": "CG-mvy9mcbgSFcnbKAeYq18oJdC"
+        ]
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let _ = error {
+                completed(Result.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            //print(String(decoding: data, as: UTF8.self))
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                decoder.dateDecodingStrategy = .iso8601
+                let cryptos = try decoder.decode(ChartPriceData.self, from: data)
+                completed(.success(cryptos))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
+    
 }
 
 
-
-
-
-
-
-//let url = URL(string: "https://api.coingecko.com/api/v3/ping")!
-//var request = URLRequest(url: url)
-//request.httpMethod = "GET"
-//request.timeoutInterval = 10
-//request.allHTTPHeaderFields = [
-//  "accept": "application/json",
-//  "x-cg-demo-api-key": "CG-mvy9mcbgSFcnbKAeYq18oJdC"
-//]
-//
-//let (data, _) = try await URLSession.shared.data(for: request)
-//print(String(decoding: data, as: UTF8.self))

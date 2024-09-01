@@ -22,7 +22,7 @@ class CVCryptoHeaderTitle: UIView {
         self.crypto = crypto
         cryptoNameLabel.text = crypto.name
         cryptoSymbolLabel.text = crypto.symbol
-        priceLabel.text = "price"
+        priceLabel.text = "$ " + String(crypto.currentPrice)
         percentLabel.text = "percent"
         NetworkManager.shared.downloadImage(from: crypto.image) { [weak self] image in
             guard let self = self else { return }

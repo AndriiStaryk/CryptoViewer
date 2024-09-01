@@ -12,6 +12,8 @@
 		4E6D3D432C81061A00A1037C /* CVCryptoHeaderTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D422C81061A00A1037C /* CVCryptoHeaderTitle.swift */; };
 		4E6D3D462C8107D400A1037C /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D452C8107D400A1037C /* UIView+Ext.swift */; };
 		4E6D3D492C811FE700A1037C /* CVLoadingDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D482C811FE700A1037C /* CVLoadingDataViewController.swift */; };
+		4E6D3D502C84809300A1037C /* CVChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D4F2C84809300A1037C /* CVChartView.swift */; };
+		4E6D3D522C848EE800A1037C /* ChartPriceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D512C848EE800A1037C /* ChartPriceData.swift */; };
 		4EDE474F2C7E27F700801B43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE474E2C7E27F700801B43 /* AppDelegate.swift */; };
 		4EDE47512C7E27F700801B43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47502C7E27F700801B43 /* SceneDelegate.swift */; };
 		4EDE47532C7E27F700801B43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE47522C7E27F700801B43 /* ViewController.swift */; };
@@ -33,6 +35,8 @@
 		4E6D3D422C81061A00A1037C /* CVCryptoHeaderTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCryptoHeaderTitle.swift; sourceTree = "<group>"; };
 		4E6D3D452C8107D400A1037C /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		4E6D3D482C811FE700A1037C /* CVLoadingDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVLoadingDataViewController.swift; sourceTree = "<group>"; };
+		4E6D3D4F2C84809300A1037C /* CVChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVChartView.swift; sourceTree = "<group>"; };
+		4E6D3D512C848EE800A1037C /* ChartPriceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPriceData.swift; sourceTree = "<group>"; };
 		4EDE474B2C7E27F700801B43 /* CryptoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDE474E2C7E27F700801B43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EDE47502C7E27F700801B43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +89,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		4E6D3D4C2C847B1A00A1037C /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				4E6D3D4F2C84809300A1037C /* CVChartView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		4EDE47422C7E27F700801B43 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +136,7 @@
 		4EDE47642C7E481800801B43 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				4E6D3D4C2C847B1A00A1037C /* Charts */,
 				4E6D3D472C811FA100A1037C /* ViewControllers */,
 				4EDE47712C7E7C0C00801B43 /* ImageViews */,
 				4EDE476E2C7E76B100801B43 /* Cells */,
@@ -187,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				4EDE47752C7E7FC800801B43 /* Crypto.swift */,
+				4E6D3D512C848EE800A1037C /* ChartPriceData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -267,10 +281,12 @@
 				4EDE47632C7E29FD00801B43 /* CVTabBarController.swift in Sources */,
 				4E6D3D492C811FE700A1037C /* CVLoadingDataViewController.swift in Sources */,
 				4EDE47532C7E27F700801B43 /* ViewController.swift in Sources */,
+				4E6D3D522C848EE800A1037C /* ChartPriceData.swift in Sources */,
 				4EDE47782C7FC51600801B43 /* CVCellLabel.swift in Sources */,
 				4EDE47762C7E7FC800801B43 /* Crypto.swift in Sources */,
 				4EDE474F2C7E27F700801B43 /* AppDelegate.swift in Sources */,
 				4EDE47512C7E27F700801B43 /* SceneDelegate.swift in Sources */,
+				4E6D3D502C84809300A1037C /* CVChartView.swift in Sources */,
 				4EDE47702C7E770100801B43 /* CVCryptoCell.swift in Sources */,
 				4EDE477A2C7FC86C00801B43 /* CVCryptoViewController.swift in Sources */,
 				4EDE476C2C7E497200801B43 /* CVFavoriteCryptosViewController.swift in Sources */,

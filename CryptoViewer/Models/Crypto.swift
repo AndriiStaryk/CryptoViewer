@@ -8,7 +8,7 @@
 import Foundation
 
 struct Crypto: Decodable {
-    
+    let id: String
     let symbol: String
     let name: String
     let image: String

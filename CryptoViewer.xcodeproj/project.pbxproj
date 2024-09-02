@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1281B02C86464800E81854 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1281AF2C86464800E81854 /* PersistenceManager.swift */; };
 		4E6D3D3F2C80922B00A1037C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D3E2C80922B00A1037C /* NetworkManager.swift */; };
 		4E6D3D412C809F4D00A1037C /* CVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D402C809F4D00A1037C /* CVError.swift */; };
 		4E6D3D432C81061A00A1037C /* CVCryptoHeaderTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6D3D422C81061A00A1037C /* CVCryptoHeaderTitle.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E1281AF2C86464800E81854 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		4E6D3D3E2C80922B00A1037C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4E6D3D402C809F4D00A1037C /* CVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVError.swift; sourceTree = "<group>"; };
 		4E6D3D422C81061A00A1037C /* CVCryptoHeaderTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCryptoHeaderTitle.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				4E6D3D3E2C80922B00A1037C /* NetworkManager.swift */,
+				4E1281AF2C86464800E81854 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				4E6D3D502C84809300A1037C /* CVChartView.swift in Sources */,
 				4EDE47702C7E770100801B43 /* CVCryptoCell.swift in Sources */,
 				4EDE477A2C7FC86C00801B43 /* CVCryptoViewController.swift in Sources */,
+				4E1281B02C86464800E81854 /* PersistenceManager.swift in Sources */,
 				4EDE476C2C7E497200801B43 /* CVFavoriteCryptosViewController.swift in Sources */,
 				4E6D3D432C81061A00A1037C /* CVCryptoHeaderTitle.swift in Sources */,
 				4EDE476A2C7E494300801B43 /* CVTrendingCryptosViewController.swift in Sources */,

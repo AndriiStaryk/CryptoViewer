@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Crypto: Decodable {
+struct Crypto: Codable, Hashable {
     let id: String
     let symbol: String
     let name: String

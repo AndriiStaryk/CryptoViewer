@@ -50,7 +50,7 @@ class CVCryptoHeaderTitle: UIView {
     
     private func configureUpperLabels() {
         cryptoNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        cryptoNameLabel.textColor = .black
+        cryptoNameLabel.textColor = .label
         cryptoNameLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         cryptoNameLabel.adjustsFontSizeToFitWidth = true
         cryptoNameLabel.adjustsFontForContentSizeCategory = true

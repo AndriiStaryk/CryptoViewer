@@ -44,19 +44,14 @@ class CVCryptoViewController: CVLoadingDataViewController {
                     
                     guard priceData.count > 0 else { return }
                     
-                    self.chart = UIHostingController(rootView:
-                                                        CVChartView(minY: priceData.first!.price,
-                                                                    maxY: priceData.last!.price,
-                                                                    list: chartData.prices))
+                    self.chart = UIHostingController(rootView: CVChartView(minY: priceData.first!.price,
+                                                                           maxY: priceData.last!.price,
+                                                                           list: chartData.prices))
                     self.updateChart()
                 }
                 
                 
-//                for pair in success.prices {
-//                    //print("Date: \(pair.time) : price: \(pair.price) $")
-//                    print("PriceData(time: \"\(pair.time)\", price: \(pair.price)),")
-//                }
-            case .failure(let _):
+            case .failure(_):
                 print("error")
             }
             

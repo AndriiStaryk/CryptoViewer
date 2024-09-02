@@ -26,6 +26,7 @@ class CVTrendingCryptosViewController: CVLoadingDataViewController {
         configureTableView()
         configureSearchController()
         configureSearchButton()
+        getTrending(page: page)
     }
     
     
@@ -33,7 +34,6 @@ class CVTrendingCryptosViewController: CVLoadingDataViewController {
         super.viewWillAppear(animated)
         
         resetTable()
-        getTrending(page: page)
     }
     
     

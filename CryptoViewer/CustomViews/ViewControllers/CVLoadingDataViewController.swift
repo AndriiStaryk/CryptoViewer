@@ -9,7 +9,6 @@ import UIKit
 
 class CVLoadingDataViewController: UIViewController {
     
-    
     var containerView: UIView!
     
     func showLoadingView() {

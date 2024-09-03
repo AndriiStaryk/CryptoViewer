@@ -70,11 +70,25 @@ class PersistenceManager {
             let encoder = JSONEncoder()
             let encodedFavorites = try encoder.encode(favorites)
             defaults.setValue(encodedFavorites, forKey: Keys.favorites)
-            print("save")
             return nil
         } catch {
             return .unableToFavorite
         }
     }
+    
+    static func isCryptoFavorite(crypto: Crypto, completed: @escaping (Bool) -> Void) {
+        retrieveFavorites { result in
+            switch result {
+            case .success(let favorites):
+                
+                let isFavorite = favorites.contains(where: { $0.id == crypto.id })
+                completed(isFavorite)
+                
+            case .failure(let error):
+               completed(false)
+            }
+        }
+    }
+
     
 }

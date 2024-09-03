@@ -8,8 +8,9 @@
 import UIKit
 import SwiftUI
 
-class CVCryptoViewController: CVLoadingDataViewController {
 
+class CVCryptoViewController: CVLoadingDataViewController, CVCryptoHeaderTitleDelegate {
+    
     var crypto: Crypto
     
     var header: CVCryptoHeaderTitle?
@@ -20,10 +21,21 @@ class CVCryptoViewController: CVLoadingDataViewController {
         self.crypto = crypto
         super.init(nibName: nil, bundle: nil)
         self.header = CVCryptoHeaderTitle(crypto: crypto)
+        self.header?.delegate = self
         getChartData(crypto: crypto, days: 2)
         
     }
     
+    
+    func didTapFavoriteButton(for crypto: Crypto, action: PersistenceActionType) {
+        PersistenceManager.updateWidth(favorite: crypto, actionType: action) { [weak self] error in
+            
+            guard self != nil else { return }
+            
+            guard error != nil else { return }
+            
+        }
+    }
     
     private func getChartData(crypto: Crypto, days: Int) {
         self.showLoadingView()

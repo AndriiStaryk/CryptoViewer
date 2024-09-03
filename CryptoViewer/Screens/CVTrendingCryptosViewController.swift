@@ -135,7 +135,7 @@ extension CVTrendingCryptosViewController: UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCrypto = filteredTrending[indexPath.row]
         let destinationVC = CVCryptoViewController(crypto: selectedCrypto)
-        PersistenceManager.save(favorites: [selectedCrypto])
+        
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     

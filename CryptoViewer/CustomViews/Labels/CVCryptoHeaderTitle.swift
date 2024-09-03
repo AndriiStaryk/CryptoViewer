@@ -7,15 +7,28 @@
 
 import UIKit
 
+
+protocol CVCryptoHeaderTitleDelegate: AnyObject {
+    func didTapFavoriteButton(for crypto: Crypto, action: PersistenceActionType)
+}
+
+
 class CVCryptoHeaderTitle: UIView {
     
     var crypto: Crypto?
     var logo = CVCryptoLogo(frame: .zero)
     var cryptoNameLabel = UILabel()
     var cryptoSymbolLabel = UILabel()
+    var makeFavoriteButton = UIButton()
     var priceLabel = UILabel()
     var percentLabel = UILabel()
     
+    weak var delegate: CVCryptoHeaderTitleDelegate?
+    private var isAdding: Bool = true {
+        didSet {
+            updateButtonAppearance()
+        }
+    }
     
     convenience init(crypto: Crypto) {
         self.init(frame: .zero)
@@ -24,9 +37,15 @@ class CVCryptoHeaderTitle: UIView {
         cryptoSymbolLabel.text = crypto.symbol
         priceLabel.text = "$ " + String(crypto.currentPrice)
         percentLabel.text = "percent"
+        
         NetworkManager.shared.downloadImage(from: crypto.image) { [weak self] image in
             guard let self = self else { return }
             DispatchQueue.main.async { self.logo.image = image }
+        }
+        
+        PersistenceManager.isCryptoFavorite(crypto: crypto) { [weak self] isFavorite in
+            guard let self = self else { return }
+            self.isAdding = !isFavorite
         }
     }
     
@@ -40,10 +59,25 @@ class CVCryptoHeaderTitle: UIView {
     }
     
     
+    @objc private func favoriteButtonTapped() {
+        guard let crypto = crypto else { return }
+        let actionType: PersistenceActionType = isAdding ? .add : .remove
+        delegate?.didTapFavoriteButton(for: crypto, action: actionType)
+        isAdding.toggle()
+    }
+    
+    private func updateButtonAppearance() {
+        DispatchQueue.main.async {
+            let heartImage = self.isAdding ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
+            self.makeFavoriteButton.setImage(heartImage, for: .normal)
+        }
+    }
+    
     private func configure() {
-        addSubviews(logo, cryptoNameLabel, cryptoSymbolLabel, priceLabel, percentLabel)
+        addSubviews(logo, cryptoNameLabel, cryptoSymbolLabel, makeFavoriteButton, priceLabel, percentLabel)
         configureUpperLabels()
         configureBottomLabels()
+        configureButton()
         configureUILayout()
     }
     
@@ -85,6 +119,16 @@ class CVCryptoHeaderTitle: UIView {
         percentLabel.lineBreakMode = .byWordWrapping
     }
     
+    private func configureButton() {
+        let heartImageEmpty = UIImage(systemName: "heart")
+        makeFavoriteButton.setImage(heartImageEmpty, for: .normal)
+        makeFavoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        makeFavoriteButton.tintColor = .systemRed
+        makeFavoriteButton.contentMode = .scaleAspectFit
+        
+        makeFavoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
+    }
+    
     private func configureUILayout() {
         
         let padding: CGFloat = 15
@@ -106,6 +150,11 @@ class CVCryptoHeaderTitle: UIView {
             cryptoSymbolLabel.centerYAnchor.constraint(equalTo: logo.centerYAnchor),
             cryptoSymbolLabel.leadingAnchor.constraint(equalTo: cryptoNameLabel.trailingAnchor, constant: spacing),
             cryptoSymbolLabel.heightAnchor.constraint(equalToConstant: upperHeaderHeight),
+            
+            makeFavoriteButton.centerYAnchor.constraint(equalTo: logo.centerYAnchor),
+            makeFavoriteButton.leadingAnchor.constraint(equalTo: cryptoSymbolLabel.trailingAnchor, constant: spacing),
+            makeFavoriteButton.widthAnchor.constraint(equalToConstant: 44),
+            makeFavoriteButton.heightAnchor.constraint(equalToConstant: 44),
             
             priceLabel.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: spacing),
             priceLabel.leadingAnchor.constraint(equalTo: logo.leadingAnchor),

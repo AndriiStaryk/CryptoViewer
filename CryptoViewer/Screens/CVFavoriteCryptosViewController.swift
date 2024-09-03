@@ -16,8 +16,15 @@ class CVFavoriteCryptosViewController: UIViewController {
         super.viewDidLoad()
 
         configureTableView()
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         getFavorites()
     }
+    
     
     
     private func configureViewController() {
@@ -50,7 +57,7 @@ class CVFavoriteCryptosViewController: UIViewController {
                     print("no favorites")
                 } else {
                     self.favorites = favorites
-                    print(favorites)
+                    
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         self.view.bringSubviewToFront(self.tableView)
